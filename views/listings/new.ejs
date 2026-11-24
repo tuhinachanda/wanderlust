@@ -1,0 +1,130 @@
+<% layout("/layouts/boilerplate") %>
+
+<div class="container py-5">
+  <div class="row justify-content-center">
+    <div class="col-lg-8 col-md-10">
+      <div class="card border rounded-4 shadow-sm p-4 p-md-5">
+        <h3 class="fw-bold mb-2">List Your Homestay</h3>
+        <p class="text-muted mb-4">Share your space with travelers from around the world and start earning today.</p>
+
+        <form action="/listings" method="POST" class="needs-validation" novalidate>
+          <!-- Title -->
+          <div class="mb-3">
+            <label for="title" class="form-label fw-semibold">Listing Title</label>
+            <input 
+              type="text" 
+              name="listing[title]" 
+              id="title" 
+              class="form-control rounded-3 py-2" 
+              placeholder="e.g. Cozy Mountain Cabin with Jacuzzi" 
+              required
+            >
+            <div class="valid-feedback">Looks great!</div>
+            <div class="invalid-feedback">Please provide a catchy listing title.</div>
+          </div>
+
+          <!-- Description -->
+          <div class="mb-3">
+            <label for="description" class="form-label fw-semibold">Description</label>
+            <textarea 
+              name="listing[description]" 
+              id="description" 
+              rows="4" 
+              class="form-control rounded-3 py-2" 
+              placeholder="Describe what makes your space special, nearby attractions, and features..." 
+              required
+            ></textarea>
+            <div class="invalid-feedback">Please enter a description for your homestay.</div>
+          </div>
+
+          <!-- Category -->
+          <div class="mb-3">
+            <label for="category" class="form-label fw-semibold">Category</label>
+            <select name="listing[category]" id="category" class="form-select rounded-3 py-2">
+              <option value="Trending" selected>Trending</option>
+              <option value="Rooms">Rooms</option>
+              <option value="Iconic Cities">Iconic Cities</option>
+              <option value="Mountains">Mountains</option>
+              <option value="Castles">Castles</option>
+              <option value="Amazing Pools">Amazing Pools</option>
+              <option value="Camping">Camping</option>
+              <option value="Farms">Farms</option>
+              <option value="Arctic">Arctic</option>
+              <option value="Beach">Beach</option>
+              <option value="Boats">Boats</option>
+            </select>
+          </div>
+
+          <!-- Image URL -->
+          <div class="mb-3">
+            <label for="image" class="form-label fw-semibold">Image URL</label>
+            <input 
+              type="url" 
+              name="listing[image]" 
+              id="image" 
+              class="form-control rounded-3 py-2" 
+              placeholder="https://images.unsplash.com/... (Leave empty for default scenic photo)"
+            >
+            <div class="form-text text-muted">Paste a high-resolution image link of your property.</div>
+          </div>
+
+          <!-- Price & Location in Row -->
+          <div class="row g-3 mb-4">
+            <div class="col-md-4">
+              <label for="price" class="form-label fw-semibold">Price per Night (₹)</label>
+              <div class="input-group">
+                <span class="input-group-text">₹</span>
+                <input 
+                  type="number" 
+                  name="listing[price]" 
+                  id="price" 
+                  class="form-control rounded-end-3 py-2" 
+                  min="0" 
+                  placeholder="2500" 
+                  required
+                >
+                <div class="invalid-feedback">Please enter a valid price.</div>
+              </div>
+            </div>
+
+            <div class="col-md-4">
+              <label for="location" class="form-label fw-semibold">Location / City</label>
+              <input 
+                type="text" 
+                name="listing[location]" 
+                id="location" 
+                class="form-control rounded-3 py-2" 
+                placeholder="e.g. Manali, Himachal Pradesh" 
+                required
+              >
+              <div class="invalid-feedback">Location is required.</div>
+            </div>
+
+            <div class="col-md-4">
+              <label for="country" class="form-label fw-semibold">Country</label>
+              <input 
+                type="text" 
+                name="listing[country]" 
+                id="country" 
+                class="form-control rounded-3 py-2" 
+                placeholder="e.g. India" 
+                required
+              >
+              <div class="invalid-feedback">Country is required.</div>
+            </div>
+          </div>
+
+          <!-- Submit Buttons -->
+          <div class="d-flex gap-3">
+            <button type="submit" class="btn btn-danger rounded-pill px-5 py-2 fw-semibold">
+              <i class="fa-solid fa-cloud-arrow-up me-1"></i> Publish Listing
+            </button>
+            <a href="/listings" class="btn btn-outline-secondary rounded-pill px-4 py-2">
+              Cancel
+            </a>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>

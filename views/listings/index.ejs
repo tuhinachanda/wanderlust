@@ -1,0 +1,136 @@
+<% layout("/layouts/boilerplate") %>
+
+<!-- Category Filter Bar -->
+<div class="filters-container border-bottom bg-white py-3 mb-4">
+  <div class="container-fluid px-lg-5 px-3 d-flex align-items-center justify-content-between gap-3">
+    <!-- Category Chips -->
+    <div class="category-filters d-flex align-items-center gap-4 overflow-x-auto pb-1">
+      <a href="/listings" class="filter-item text-decoration-none <%= !activeCategory ? 'active' : '' %>">
+        <div class="filter-icon"><i class="fa-solid fa-fire"></i></div>
+        <p class="filter-text mb-0">Trending</p>
+      </a>
+      <a href="/listings?category=Rooms" class="filter-item text-decoration-none <%= activeCategory === 'Rooms' ? 'active' : '' %>">
+        <div class="filter-icon"><i class="fa-solid fa-bed"></i></div>
+        <p class="filter-text mb-0">Rooms</p>
+      </a>
+      <a href="/listings?category=Iconic Cities" class="filter-item text-decoration-none <%= activeCategory === 'Iconic Cities' ? 'active' : '' %>">
+        <div class="filter-icon"><i class="fa-solid fa-mountain-city"></i></div>
+        <p class="filter-text mb-0">Iconic Cities</p>
+      </a>
+      <a href="/listings?category=Mountains" class="filter-item text-decoration-none <%= activeCategory === 'Mountains' ? 'active' : '' %>">
+        <div class="filter-icon"><i class="fa-solid fa-mountain"></i></div>
+        <p class="filter-text mb-0">Mountains</p>
+      </a>
+      <a href="/listings?category=Castles" class="filter-item text-decoration-none <%= activeCategory === 'Castles' ? 'active' : '' %>">
+        <div class="filter-icon"><i class="fa-brands fa-fort-awesome"></i></div>
+        <p class="filter-text mb-0">Castles</p>
+      </a>
+      <a href="/listings?category=Amazing Pools" class="filter-item text-decoration-none <%= activeCategory === 'Amazing Pools' ? 'active' : '' %>">
+        <div class="filter-icon"><i class="fa-solid fa-person-swimming"></i></div>
+        <p class="filter-text mb-0">Amazing Pools</p>
+      </a>
+      <a href="/listings?category=Camping" class="filter-item text-decoration-none <%= activeCategory === 'Camping' ? 'active' : '' %>">
+        <div class="filter-icon"><i class="fa-solid fa-campground"></i></div>
+        <p class="filter-text mb-0">Camping</p>
+      </a>
+      <a href="/listings?category=Farms" class="filter-item text-decoration-none <%= activeCategory === 'Farms' ? 'active' : '' %>">
+        <div class="filter-icon"><i class="fa-solid fa-cow"></i></div>
+        <p class="filter-text mb-0">Farms</p>
+      </a>
+      <a href="/listings?category=Arctic" class="filter-item text-decoration-none <%= activeCategory === 'Arctic' ? 'active' : '' %>">
+        <div class="filter-icon"><i class="fa-regular fa-snowflake"></i></div>
+        <p class="filter-text mb-0">Arctic</p>
+      </a>
+      <a href="/listings?category=Beach" class="filter-item text-decoration-none <%= activeCategory === 'Beach' ? 'active' : '' %>">
+        <div class="filter-icon"><i class="fa-solid fa-umbrella-beach"></i></div>
+        <p class="filter-text mb-0">Beach</p>
+      </a>
+      <a href="/listings?category=Boats" class="filter-item text-decoration-none <%= activeCategory === 'Boats' ? 'active' : '' %>">
+        <div class="filter-icon"><i class="fa-solid fa-sailboat"></i></div>
+        <p class="filter-text mb-0">Boats</p>
+      </a>
+    </div>
+
+    <!-- Tax Toggle Switch -->
+    <div class="tax-toggle border rounded-pill px-3 py-2 d-none d-lg-flex align-items-center gap-2 flex-shrink-0">
+      <div class="form-check form-switch form-check-reverse m-0">
+        <input class="form-check-input" type="checkbox" role="switch" id="taxSwitch">
+        <label class="form-check-label small fw-semibold text-secondary" for="taxSwitch">Display total after taxes</label>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="container-fluid px-lg-5 px-3">
+  <% if (searchQuery) { %>
+    <div class="mb-4 d-flex align-items-center justify-content-between">
+      <h5 class="fw-semibold text-dark mb-0">
+        Search results for "<span class="text-danger"><%= searchQuery %></span>"
+      </h5>
+      <a href="/listings" class="btn btn-sm btn-outline-secondary rounded-pill">Clear Search</a>
+    </div>
+  <% } %>
+
+  <% if (allListings && allListings.length > 0) { %>
+    <div class="row row-cols-xxl-4 row-cols-lg-3 row-cols-md-2 row-cols-1 g-4">
+      <% for (let listing of allListings) { %>
+        <div class="col">
+          <a href="/listings/<%= listing._id %>" class="listing-link text-decoration-none text-dark">
+            <div class="card listing-card border-0 h-100">
+              <!-- Card Image with Wishlist Heart -->
+              <div class="image-wrapper position-relative overflow-hidden rounded-4">
+                <img 
+                  src="<%= listing.image %>" 
+                  class="card-img-top listing-img" 
+                  alt="<%= listing.title %>"
+                  loading="lazy"
+                >
+                <button type="button" class="wishlist-btn position-absolute top-0 end-0 m-3 btn p-0 border-0 text-white" aria-label="Add to wishlist">
+                  <i class="fa-solid fa-heart fs-5"></i>
+                </button>
+                <% if (listing.category) { %>
+                  <span class="category-badge position-absolute top-0 start-0 m-3 badge rounded-pill bg-dark bg-opacity-75">
+                    <%= listing.category %>
+                  </span>
+                <% } %>
+              </div>
+
+              <!-- Card Body -->
+              <div class="card-body px-1 pt-3 pb-0">
+                <div class="d-flex justify-content-between align-items-start mb-1">
+                  <h6 class="card-title fw-bold text-truncate mb-0" title="<%= listing.title %>">
+                    <%= listing.title %>
+                  </h6>
+                  <div class="rating-pill small fw-semibold text-dark d-flex align-items-center gap-1">
+                    <i class="fa-solid fa-star text-danger"></i>
+                    <span>4.9</span>
+                  </div>
+                </div>
+                <p class="card-text text-muted small mb-1 text-truncate">
+                  <%= listing.location %>, <%= listing.country %>
+                </p>
+                <div class="card-price mt-1">
+                  <span class="fw-bold text-dark fs-6">₹<%= listing.price.toLocaleString("en-IN") %></span>
+                  <span class="text-secondary small"> / night</span>
+                  <span class="tax-info small text-danger fw-semibold ms-1 d-none">+18% GST (₹<%= Math.round(listing.price * 1.18).toLocaleString("en-IN") %> total)</span>
+                </div>
+              </div>
+            </div>
+          </a>
+        </div>
+      <% } %>
+    </div>
+  <% } else { %>
+    <!-- Empty State -->
+    <div class="empty-state text-center py-5 my-5">
+      <div class="empty-state-icon text-muted mb-3">
+        <i class="fa-solid fa-compass-drafting fa-3x text-danger opacity-50"></i>
+      </div>
+      <h4 class="fw-bold text-dark">No homestays found</h4>
+      <p class="text-muted">We couldn't find any stays matching your criteria. Try adjusting your search or filters.</p>
+      <a href="/listings" class="btn btn-danger rounded-pill px-4 py-2 mt-2">
+        <i class="fa-solid fa-arrow-rotate-left me-1"></i> Reset Filters
+      </a>
+    </div>
+  <% } %>
+</div>

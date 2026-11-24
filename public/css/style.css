@@ -1,0 +1,256 @@
+/* Wanderlust Modern Minimalist Stylesheet */
+:root {
+  --primary-color: #fe424d;
+  --primary-hover: #e0323c;
+  --dark-color: #222222;
+  --light-gray: #f7f7f7;
+  --border-color: #ebebeb;
+  --font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+}
+
+body {
+  font-family: var(--font-family);
+  color: var(--dark-color);
+  background-color: #ffffff;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* Custom Primary Buttons */
+.btn-danger {
+  background-color: var(--primary-color) !important;
+  border-color: var(--primary-color) !important;
+  transition: all 0.2s ease-in-out;
+}
+
+.btn-danger:hover, .btn-danger:focus, .btn-danger:active {
+  background-color: var(--primary-hover) !important;
+  border-color: var(--primary-hover) !important;
+  box-shadow: 0 4px 12px rgba(254, 66, 77, 0.25);
+}
+
+.btn-outline-danger {
+  color: var(--primary-color) !important;
+  border-color: var(--primary-color) !important;
+}
+
+.btn-outline-danger:hover {
+  background-color: var(--primary-color) !important;
+  color: #ffffff !important;
+}
+
+.text-danger {
+  color: var(--primary-color) !important;
+}
+
+/* Navbar */
+.main-navbar {
+  height: 80px;
+  background-color: #ffffff !important;
+  transition: box-shadow 0.2s ease;
+}
+
+.brand-icon {
+  font-size: 2rem;
+  color: var(--primary-color);
+}
+
+.brand-text {
+  font-weight: 800;
+  font-size: 1.45rem;
+  letter-spacing: -0.5px;
+  color: var(--primary-color);
+}
+
+.search-bar {
+  border: 1px solid var(--border-color);
+  border-radius: 40px;
+  box-shadow: 0 1px 2px rgba(0,0,0,0.08), 0 4px 12px rgba(0,0,0,0.05);
+  padding: 4px 6px 4px 16px;
+  transition: box-shadow 0.2s ease;
+  min-width: 320px;
+}
+
+.search-bar:hover, .search-bar:focus-within {
+  box-shadow: 0 2px 4px rgba(0,0,0,0.12), 0 6px 20px rgba(0,0,0,0.08);
+}
+
+.search-input {
+  font-size: 0.9rem;
+  font-weight: 500;
+}
+
+.search-input:focus {
+  outline: none;
+  box-shadow: none;
+}
+
+.search-btn {
+  background-color: var(--primary-color);
+  color: white;
+  width: 34px;
+  height: 34px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.8rem;
+  transition: transform 0.15s ease;
+}
+
+.search-btn:hover {
+  background-color: var(--primary-hover);
+  color: white;
+  transform: scale(1.05);
+}
+
+.user-menu-pill {
+  transition: box-shadow 0.2s ease;
+}
+
+.user-menu-pill:hover {
+  box-shadow: 0 2px 4px rgba(0,0,0,0.12);
+}
+
+.user-avatar {
+  width: 30px;
+  height: 30px;
+  font-weight: 600;
+  font-size: 0.85rem;
+}
+
+/* Category Filters */
+.category-filters::-webkit-scrollbar {
+  display: none;
+}
+
+.category-filters {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+.filter-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  color: #717171;
+  padding-bottom: 8px;
+  border-bottom: 2px solid transparent;
+  opacity: 0.75;
+  transition: all 0.2s ease;
+  min-width: 58px;
+}
+
+.filter-item:hover {
+  color: var(--dark-color);
+  opacity: 1;
+  border-bottom: 2px solid #ddd;
+}
+
+.filter-item.active {
+  color: var(--dark-color);
+  opacity: 1;
+  border-bottom: 2px solid var(--dark-color);
+  font-weight: 600;
+}
+
+.filter-icon {
+  font-size: 1.3rem;
+  margin-bottom: 4px;
+}
+
+.filter-text {
+  font-size: 0.75rem;
+  white-space: nowrap;
+}
+
+/* Listing Cards */
+.listing-card {
+  transition: transform 0.2s ease;
+}
+
+.listing-card:hover {
+  cursor: pointer;
+}
+
+.image-wrapper {
+  aspect-ratio: 20 / 19;
+  background-color: #f0f0f0;
+}
+
+.listing-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.35s ease;
+}
+
+.listing-card:hover .listing-img {
+  transform: scale(1.04);
+}
+
+.wishlist-btn {
+  text-shadow: 0 1px 4px rgba(0,0,0,0.5);
+  transition: transform 0.15s ease;
+}
+
+.wishlist-btn:hover {
+  transform: scale(1.15);
+  color: var(--primary-color) !important;
+}
+
+.card-title {
+  font-size: 0.95rem;
+}
+
+/* Star Rating in Review Form */
+.star-rating {
+  flex-direction: row-reverse;
+  justify-content: flex-end;
+}
+
+.star-rating input {
+  display: none;
+}
+
+.star-rating label {
+  color: #ddd;
+  font-size: 1.5rem;
+  cursor: pointer;
+  transition: color 0.15s ease;
+}
+
+.star-rating label:hover,
+.star-rating label:hover ~ label,
+.star-rating input:checked ~ label {
+  color: var(--primary-color);
+}
+
+/* Booking Widget */
+.booking-card {
+  border-color: var(--border-color) !important;
+  box-shadow: 0 6px 16px rgba(0,0,0,0.08) !important;
+}
+
+.reserve-btn {
+  background: linear-gradient(to right, #e61e4d 0%, #e31c5f 50%, #d70466 100%) !important;
+  border: none !important;
+}
+
+.reserve-btn:hover {
+  opacity: 0.95;
+}
+
+/* Links & Hover states */
+.hover-link:hover {
+  text-decoration: underline !important;
+  color: var(--dark-color) !important;
+}
+
+.hover-icon:hover {
+  color: var(--dark-color) !important;
+}
+
+/* Auth Cards */
+.auth-card {
+  border-color: var(--border-color);
+  box-shadow: 0 4px 20px rgba(0,0,0,0.06) !important;
+}

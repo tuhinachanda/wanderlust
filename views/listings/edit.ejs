@@ -1,0 +1,129 @@
+<% layout("/layouts/boilerplate") %>
+
+<div class="container py-5">
+  <div class="row justify-content-center">
+    <div class="col-lg-8 col-md-10">
+      <div class="card border rounded-4 shadow-sm p-4 p-md-5">
+        <h3 class="fw-bold mb-2">Edit Your Homestay</h3>
+        <p class="text-muted mb-4">Update information, pricing, or photos for "<%= listing.title %>".</p>
+
+        <form action="/listings/<%= listing._id %>?_method=PUT" method="POST" class="needs-validation" novalidate>
+          <!-- Current Image Preview -->
+          <div class="mb-4">
+            <label class="form-label fw-semibold text-secondary small">Current Photo Preview</label>
+            <div class="rounded-3 overflow-hidden" style="max-height: 220px;">
+              <img src="<%= listing.image %>" alt="<%= listing.title %>" class="w-100 object-fit-cover" style="height: 200px;">
+            </div>
+          </div>
+
+          <!-- Title -->
+          <div class="mb-3">
+            <label for="title" class="form-label fw-semibold">Listing Title</label>
+            <input 
+              type="text" 
+              name="listing[title]" 
+              id="title" 
+              class="form-control rounded-3 py-2" 
+              value="<%= listing.title %>" 
+              required
+            >
+            <div class="invalid-feedback">Please enter a valid listing title.</div>
+          </div>
+
+          <!-- Description -->
+          <div class="mb-3">
+            <label for="description" class="form-label fw-semibold">Description</label>
+            <textarea 
+              name="listing[description]" 
+              id="description" 
+              rows="4" 
+              class="form-control rounded-3 py-2" 
+              required
+            ><%= listing.description %></textarea>
+            <div class="invalid-feedback">Please enter a description.</div>
+          </div>
+
+          <!-- Category -->
+          <div class="mb-3">
+            <label for="category" class="form-label fw-semibold">Category</label>
+            <select name="listing[category]" id="category" class="form-select rounded-3 py-2">
+              <% const categories = ["Trending", "Rooms", "Iconic Cities", "Mountains", "Castles", "Amazing Pools", "Camping", "Farms", "Arctic", "Beach", "Boats"]; %>
+              <% for (let cat of categories) { %>
+                <option value="<%= cat %>" <%= listing.category === cat ? 'selected' : '' %>><%= cat %></option>
+              <% } %>
+            </select>
+          </div>
+
+          <!-- Image URL -->
+          <div class="mb-3">
+            <label for="image" class="form-label fw-semibold">Image URL</label>
+            <input 
+              type="url" 
+              name="listing[image]" 
+              id="image" 
+              class="form-control rounded-3 py-2" 
+              value="<%= listing.image %>"
+            >
+            <div class="form-text text-muted">Enter a new image URL or keep existing.</div>
+          </div>
+
+          <!-- Price & Location in Row -->
+          <div class="row g-3 mb-4">
+            <div class="col-md-4">
+              <label for="price" class="form-label fw-semibold">Price per Night (₹)</label>
+              <div class="input-group">
+                <span class="input-group-text">₹</span>
+                <input 
+                  type="number" 
+                  name="listing[price]" 
+                  id="price" 
+                  class="form-control rounded-end-3 py-2" 
+                  min="0" 
+                  value="<%= listing.price %>" 
+                  required
+                >
+                <div class="invalid-feedback">Please enter a valid price.</div>
+              </div>
+            </div>
+
+            <div class="col-md-4">
+              <label for="location" class="form-label fw-semibold">Location / City</label>
+              <input 
+                type="text" 
+                name="listing[location]" 
+                id="location" 
+                class="form-control rounded-3 py-2" 
+                value="<%= listing.location %>" 
+                required
+              >
+              <div class="invalid-feedback">Location is required.</div>
+            </div>
+
+            <div class="col-md-4">
+              <label for="country" class="form-label fw-semibold">Country</label>
+              <input 
+                type="text" 
+                name="listing[country]" 
+                id="country" 
+                class="form-control rounded-3 py-2" 
+                value="<%= listing.country %>" 
+                required
+              >
+              <div class="invalid-feedback">Country is required.</div>
+            </div>
+          </div>
+
+          <!-- Submit Buttons -->
+          <div class="d-flex gap-3">
+            <button type="submit" class="btn btn-danger rounded-pill px-5 py-2 fw-semibold">
+              <i class="fa-solid fa-check me-1"></i> Update Listing
+            </button>
+            <a href="/listings/<%= listing._id %>" class="btn btn-outline-secondary rounded-pill px-4 py-2">
+              Cancel
+            </a>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
