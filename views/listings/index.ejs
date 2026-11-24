@@ -5,7 +5,7 @@
   <div class="container-fluid px-lg-5 px-3 d-flex align-items-center justify-content-between gap-3">
     <!-- Category Chips -->
     <div class="category-filters d-flex align-items-center gap-4 overflow-x-auto pb-1">
-      <a href="/listings" class="filter-item text-decoration-none <%= !activeCategory ? 'active' : '' %>">
+      <a href="/listings" class="filter-item text-decoration-none <%= !activeCategory || activeCategory.toLowerCase() === 'trending' ? 'active' : '' %>">
         <div class="filter-icon"><i class="fa-solid fa-fire"></i></div>
         <p class="filter-text mb-0">Trending</p>
       </a>

@@ -13,7 +13,8 @@ module.exports.index = async (req, res) => {
     ];
   }
 
-  if (category && category.trim() !== "") {
+  // Filter by category only if a specific category other than Trending is requested
+  if (category && category.trim() !== "" && category.trim().toLowerCase() !== "trending") {
     filter.category = category.trim();
   }
 
